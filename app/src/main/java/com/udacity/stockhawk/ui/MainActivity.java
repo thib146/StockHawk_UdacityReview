@@ -1,5 +1,6 @@
 package com.udacity.stockhawk.ui;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
+import com.udacity.stockhawk.widget.StockHawkWidgetProvider;
 
 import java.util.Locale;
 
@@ -103,6 +105,9 @@ public class MainActivity extends AppCompatActivity implements
     protected void onResume() {
         super.onResume();
 
+        int orientation = getResources().getConfiguration().orientation;
+        boolean isTablet = getResources().getBoolean(R.bool.isTablet);
+
         // Get the intent coming from the widget
         Intent intent = getIntent();
 
@@ -110,13 +115,27 @@ public class MainActivity extends AppCompatActivity implements
         mSymbol = intent.getStringExtra(Intent.EXTRA_TEXT);
 
         // If the symbol isn't null, create the fragment accordingly
-        if (mSymbol != null) {
+        if (mSymbol != null && (isTablet || orientation == ORIENTATION_LANDSCAPE)) {
             Bundle arguments = new Bundle();
             arguments.putString(DetailFragment.ARG_ITEM_ID, mSymbol);
             DetailFragment detailFragment = new DetailFragment();
             detailFragment.setArguments(arguments);
             getFragmentManager().beginTransaction().replace(R.id.stock_detail_fragment, detailFragment).commit();
         }
+    }
+
+    /**
+     * When the app pauses, send the last list to the widget
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Intent intent = new Intent(this, StockHawkWidgetProvider.class);
+        intent.setAction(QuoteSyncJob.ACTION_DATA_UPDATED);
+        int[] ids = {R.xml.widget_info_stockhawk};
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        sendBroadcast(intent);
     }
 
     // Receive the RefresherLayout from the fragment for the AddStock function
@@ -164,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements
         new AddStockDialog().show(this.getFragmentManager(), "StockDialogFragment");
     }
 
-    // Add a stock when the symbol is
+    // Add a stock when the symbol is valid
     void addStock(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
 
@@ -175,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
 
-            PrefUtils.removeStock(this, "GOOG");
             PrefUtils.addStock(this, symbol);
             QuoteSyncJob.syncImmediately(this);
         }
@@ -186,8 +204,13 @@ public class MainActivity extends AppCompatActivity implements
         String selection = Contract.Quote.COLUMN_SYMBOL + "=?";
         String[] mSelectionArgs = {""};
         mSelectionArgs[0] = symbol;
+        getContentResolver().delete(Contract.Quote.URI, selection, mSelectionArgs);
 
         PrefUtils.removeStock(this, symbol);
-        getContentResolver().delete(Contract.Quote.URI, selection, mSelectionArgs);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="4dp"
-    android:paddingRight="4dp">
+    android:paddingStart="4dp"
+    android:paddingRight="4dp"
+    android:paddingEnd="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,7 +61,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/percent_change_pill_green"
                 android:paddingLeft="3dp"
+                android:paddingStart="3dp"
                 android:paddingRight="3dp"
+                android:paddingEnd="3dp"
                 tools:text="100%" />
         </LinearLayout>
     </LinearLayout>

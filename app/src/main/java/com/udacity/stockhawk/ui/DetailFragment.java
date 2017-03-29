@@ -28,6 +28,7 @@ import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.DayAxisValueFormatter;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.data.PriceAxisValueFormatter;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
 
 import org.w3c.dom.Text;
@@ -439,8 +440,11 @@ public class DetailFragment extends Fragment implements
 
         LineData lineData = new LineData(dataSet);
 
-        // Formatting of the dates so that they appear in "May 16" style
+        // Formatting the dates so that they appear in "May 16" style
         IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(lineChart);
+
+        // Formatting the prices so that a dollar sign is added
+        IAxisValueFormatter yAxisFormatter = new PriceAxisValueFormatter(lineChart);
 
         // X Axis options
         XAxis xAxis = lineChart.getXAxis();
@@ -462,6 +466,7 @@ public class DetailFragment extends Fragment implements
         rightAxis.setTextColor(Color.WHITE);
         rightAxis.setDrawAxisLine(true);
         rightAxis.setDrawGridLines(true);
+        rightAxis.setValueFormatter(yAxisFormatter);
 
         // General chart options
         lineChart.setData(lineData);

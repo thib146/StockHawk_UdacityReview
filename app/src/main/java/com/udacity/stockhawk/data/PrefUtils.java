@@ -1,14 +1,20 @@
 package com.udacity.stockhawk.data;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.sync.QuoteSyncJob;
+import com.udacity.stockhawk.widget.StockHawkWidgetProvider;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.udacity.stockhawk.sync.QuoteSyncJob.ACTION_DATA_UPDATED;
 
 public final class PrefUtils {
 
@@ -51,6 +57,12 @@ public final class PrefUtils {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putStringSet(key, stocks);
         editor.apply();
+
+        Intent intent = new Intent(context, StockHawkWidgetProvider.class);
+        intent.setAction(QuoteSyncJob.ACTION_DATA_UPDATED);
+        int[] ids = {R.xml.widget_info_stockhawk};
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        context.sendBroadcast(intent);
     }
 
     public static void addStock(Context context, String symbol) {

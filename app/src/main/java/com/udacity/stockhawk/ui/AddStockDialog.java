@@ -118,6 +118,9 @@ public class AddStockDialog extends DialogFragment {
             boolean isValid = false;
 
             try {
+                if (!mSymbol.matches("[a-zA-Z]*")) {
+                    return isValid = false;
+                }
                 Stock queryStock = YahooFinance.get(mSymbol); // Get the quote from Yahoo
                 isValid = queryStock.isValid(); // Check if it is valid
             } catch (IOException exception) {
