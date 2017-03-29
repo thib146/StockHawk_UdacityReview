@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name" translatable="false">Stock Hawk</string>
+
+    <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
+
+    <string name="pref_stocks_key" translatable="false">stocks</string>
+
+    <string name="stock_title">Stock:</string>
+
+    <string name="add_stock_description">Add a new stock to your list by typing its symbol.</string>
+
+    <string name="pref_display_mode_key" translatable="false">displayMode</string>
+    <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
+
+    <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
+    <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
+
+    <string name="default_stocks_yahoo" translatable="false">YHOO</string>
+    <string name="default_stocks_apple" translatable="false">AAPL</string>
+    <string name="default_stocks_microsoft" translatable="false">MSFT</string>
+    <string name="default_stocks_facebook" translatable="false">FB</string>
+
+    <string name="tab_one_day" translatable="false">1D</string>
+    <string name="tab_five_days" translatable="false">5D</string>
+    <string name="tab_three_months" translatable="false">3M</string>
+    <string name="tab_six_months" translatable="false">6M</string>
+    <string name="tab_one_year" translatable="false">1Y</string>
+    <string name="tab_five_years" translatable="false">5Y</string>
+
+
+    <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
+
+
+    <string name="dialog_title">Add Stock</string>
+    <string name="dialog_hint">Symbol (e.g. GOOG)</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_add">Add</string>
+
+    <string name="empty_widget_list">No stock data available.</string>
+
+    <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
+    <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
+
+    <string name="toast_stock_added_no_connectivity">Symbol added. Will refresh when network available.</string>
+    <string name="toast_no_connectivity">Will refresh when network available.</string>
+
+    <string name="no_stock_selected">You haven\'t selected any stocks yet. Add stocks to your list and click on one to see its details here.</string>
+
+    <string name="toast_symbol_unknown">The stock symbol requested does not exist.</string>
+
+</resources>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="stock_title">أرصدة:</string>
+
+    <!--<string name="tab_one_day">يوم1</string>-->
+    <!--<string name="tab_five_days">5ايام</string>-->
+    <!--<string name="tab_three_months">3اشهر</string>-->
+    <!--<string name="tab_six_months">6اشهر</string>-->
+    <!--<string name="tab_one_year">1سنة</string>-->
+    <!--<string name="tab_five_years">5سنوات</string>-->
+
+    <string name="dialog_title">إضافة سهم</string>
+    <string name="dialog_hint">رمز (مثال: GOOG)</string>
+    <string name="dialog_cancel">شطب</string>
+    <string name="dialog_add">ضم</string>
+
+    <string name="empty_widget_list">لا تتوفر بيانات المخزون</string>
+
+    <string name="error_no_network">لا اتصال الشبكة! سيتم تحميل مؤشر الأسهم عندما تكون الشبكة متاحة</string>
+    <string name="error_no_stocks">لم يتم إضافة أي أسهم! ضرب زر العمل العائمة لإضافة واحد</string>
+
+    <string name="toast_stock_added_no_connectivity">سيمبول s% أدد .سيتم تحديث عندما الشبكة المتاحة</string>
+    <string name="toast_no_connectivity">سيمبول s% أدد.</string>
+    <string name="toast_symbol_unknown">رمز السهم المطلوب غير موجود</string>
+
+    <string name="no_stock_selected">م تقم بتحديد أي أسهم حتى الآن. إضافة أسهم إلى القائمة الخاصة بك وانقر على واحد لمعرفة تفاصيلها هنا.</string>
+
+</resources>
