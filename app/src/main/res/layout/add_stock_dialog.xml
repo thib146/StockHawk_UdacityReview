@@ -15,6 +15,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:hint="@string/dialog_hint"
-        android:inputType="textCapCharacters" />
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionDone" />
 
 </LinearLayout>
